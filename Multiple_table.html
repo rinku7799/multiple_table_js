@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid black;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+
+        }
+
+        th {
+            background-color: rgb(201, 165, 185);
+            color: white;
+            padding: 5px;
+        }
+
+        .container {
+            border: 1px solid black;
+            height: 300px;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: rgb(88, 100, 114) 1px 10px 30px 5px;
+            margin-top: 50px;
+
+        }
+
+        button {
+            margin-left: 30px;
+            margin-top: 20px;
+            background-color: #d3c0c0;
+            border: none;
+            border-radius: 7px;
+            height: 30px;
+            width: 60px;
+            font-weight: 700;
+        }
+
+        button:active {
+            box-shadow: 2px 2px 5px #818285;
+        }
+
+        #root_table {
+            margin-top: 40px;
+            margin-left: 40px;
+
+        }
+
+        body {
+            background-color: rgb(235, 223, 223);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="0" onclick="clickHandler(this)">table1</button>
+        <button id="1" onclick="clickHandler(this)">table2</button>
+        <button id="2" onclick="clickHandler(this)">table3</button>
+        <button id="3" onclick="clickHandler(this)">table4</button>
+        <button id="4" onclick="clickHandler(this)">table5</button>
+        <div id="root_table"></div>
+
+    </div>
+
+    <script>
+        const object = { Sr_no: '', Title: '', Acceptance: '', Difficutly: '' };
+
+        const array1 = [{ Sr_no: '101', Title: 'Two Sum', Acceptance: '49.8%', Difficutly: 'Easy' },
+        { Sr_no: '102', Title: 'Median of Two Sorted Arrays', Acceptance: '66.4%', Difficutly: 'Hard' },
+        { Sr_no: '103', Title: 'Zigzag Conversion', Acceptance: '49.0%', Difficutly: 'Medium' },
+        { Sr_no: '104', Title: ' Reverse Integer', Acceptance: '27.5%', Difficutly: 'Easy' },
+        { Sr_no: '105', Title: 'Regular Expression Matching', Acceptance: '18.0%', Difficutly: 'Hard' }];
+
+        const array2 = [{ Sr_no: '106', Title: 'Two Sum', Acceptance: '69.8%', Difficutly: 'Easy' },
+        { Sr_no: '107', Title: 'Median of Two Sorted Arrays', Acceptance: '36.4%', Difficutly: 'Hard' },
+        { Sr_no: '108', Title: 'Regular Expression Matching ', Acceptance: '45.0%', Difficutly: 'Hard' },
+        { Sr_no: '109', Title: ' Reverse Integer', Acceptance: '27.5%', Difficutly: 'Easy' },
+        { Sr_no: '110', Title: 'Zigzag Conversion', Acceptance: '28.0%', Difficutly: 'Medium' }];
+
+        const array3 = [{ Sr_no: '111', Title: 'Regular Expression Matching ', Acceptance: '39.8%', Difficutly: 'Easy' },
+        { Sr_no: '112', Title: 'Median of Two Sorted Arrays', Acceptance: '36.4%', Difficutly: 'Hard' },
+        { Sr_no: '113', Title: 'Zigzag Conversion', Acceptance: '85.0%', Difficutly: 'Medium' },
+        { Sr_no: '114', Title: ' Reverse Integer', Acceptance: '27.5%', Difficutly: 'Hard' },
+        { Sr_no: '115', Title: 'Two Sum', Acceptance: '28.0%', Difficutly: 'Hard' }];
+
+        const array4 = [{ Sr_no: '116', Title: 'Zigzag Conversion', Acceptance: '79.8%', Difficutly: 'Easy' },
+        { Sr_no: '117', Title: 'Median of Two Sorted Arrays', Acceptance: '36.4%', Difficutly: 'Hard' },
+        { Sr_no: '118', Title: 'Two Sum', Acceptance: '75.0%', Difficutly: 'Hard' },
+        { Sr_no: '119', Title: ' Reverse Integer', Acceptance: '27.5%', Difficutly: 'Medium' },
+        { Sr_no: '120', Title: 'Regular Expression Matching', Acceptance: '80.0%', Difficutly: 'Medium' }];
+
+        const array5 = [{ Sr_no: '121', Title: 'Median of Two Sorted Arrays', Acceptance: '41.50%', Difficutly: 'Easy' },
+        { Sr_no: '122', Title: 'Reverse Integer', Acceptance: '36.4%', Difficutly: 'Hard' },
+        { Sr_no: '123', Title: 'Zigzag Conversion', Acceptance: '55.0%', Difficutly: 'Medium' },
+        { Sr_no: '124', Title: ' Two Sum', Acceptance: '27.5%', Difficutly: 'Easy' },
+        { Sr_no: '125', Title: 'Regular Expression Matching', Acceptance: '48.0%', Difficutly: 'Hard' }];
+
+        const mainArray = [];
+        mainArray.push(array1);
+        mainArray.push(array2);
+        mainArray.push(array3);
+        mainArray.push(array4);
+        mainArray.push(array5);
+
+        const clickHandler = (object) => {
+            document.getElementById("root_table").innerHTML = " ";
+            let index = parseFloat(object.id);
+            const table = document.createElement("table");
+            const tbody = document.createElement("tbody");
+            const thead = document.createElement("thead");
+            thead.innerHTML += `
+                <th>Sr_no</th>
+                <th>Title</th>
+                <th>Acceptance</th>
+                <th>Difficutly</th> `
+            table.appendChild(thead)
+            mainArray[index].forEach((value) => {
+
+
+                const trow = document.createElement("tr");
+
+                // "abc "+ 89 +" xyz" = `abc ${89} xyz`
+
+                trow.innerHTML += `
+                <td>${value.Sr_no}</td>
+                <td>${value.Title}</td>
+                <td>${value.Acceptance}</td>
+                `
+                const tdataForDifficulty = document.createElement("td");
+                const textNode = document.createTextNode(value.Difficutly);
+                if (value.Difficutly === 'Easy') {
+                    tdataForDifficulty.style.color = "green";
+                } else if (value.Difficutly === 'Medium') {
+                    tdataForDifficulty.style.color = "blue";
+                } else {
+                    tdataForDifficulty.style.color = "red";
+                }
+                tdataForDifficulty.appendChild(textNode);
+                trow.appendChild(tdataForDifficulty);
+
+                tbody.appendChild(trow)
+            });
+
+            table.appendChild(tbody);
+            document.getElementById("root_table").appendChild(table);
+        }
+
+    </script>
+</body>
+
+</html>
